@@ -1,13 +1,21 @@
 package com.example.spring.boot.backend.springbootbackend.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Employee {
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
 
-    public Employee(Long id, String firstName, String lastName, String email){
-        this.id = id;
+    public Employee(String firstName, String lastName, String email){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
