@@ -3,6 +3,7 @@ package com.example.spring.boot.backend.springbootbackend.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity(name = "tblemployee") // This tells Hibernate to make a table out of this class
 public class Employee {
@@ -13,6 +14,8 @@ public class Employee {
     private String lastName;
     private String email;
     private LocalDate dob;
+    @Transient
+    private Integer age;
 
     public Employee(String firstName, String lastName, String email,LocalDate dob){
         this.firstName = firstName;
@@ -65,6 +68,14 @@ public class Employee {
         this.dob = dob;
     }
 
+    public Integer getAge() {
+        return Period.between(this.dob,LocalDate.now()).getYears();
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -72,7 +83,8 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", dob=" + dob +
+                ", dob=" + dob + '\'' +
+                ", age=" + age +
                 '}';
     }
 }
