@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity(name = "tblemployee") // This tells Hibernate to make a table out of this class
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,10 +14,11 @@ public class Employee {
     private String email;
     private LocalDate dob;
 
-    public Employee(String firstName, String lastName, String email){
+    public Employee(String firstName, String lastName, String email,LocalDate dob){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.dob = dob;
     }
 
     public Employee(){
@@ -56,6 +57,14 @@ public class Employee {
         this.email = email;
     }
 
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -63,6 +72,7 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", dob=" + dob +
                 '}';
     }
 }
